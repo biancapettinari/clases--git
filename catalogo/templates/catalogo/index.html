@@ -1,0 +1,42 @@
+{% extends "catalogo/base.html" %}
+
+{% block titulo %}Inicio{% endblock %}
+
+{% block contenido %}
+    <p class="text-center">Bienvenido a la biblioteca. Usá el menú para navegar.</p>
+
+{% if libros %}
+    <div id="carouselBiblioteca" class="carousel slide mb-4" data-bs-ride="carousel">
+    <div class="carousel-inner rounded shadow">
+
+{% for libro in libros %}
+{% if libro.portada %}
+    <img src="{{ libro.portada.url }}" class="d-block w-100" alt="Portada de {{ libro.titulo }}">
+{% else %}
+    <img src="https://via.placeholder.com/150x200?text=Sin+portada" class="d-block w-100" alt="Sin portada">
+{% endif %}
+
+    <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded">
+        <h5>{{ libro.titulo }}</h5>
+        <p>{{ libro.autor.nombre }}</p>
+    </div>
+    </div>
+    {% endfor %}
+
+</div>
+
+<button class="carousel-control-prev" type="button" data-bs-target="#carouselBiblioteca" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Anterior</span>
+</button>
+<button class="carousel-control-next" type="button" data-bs-target="#carouselBiblioteca" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Siguiente</span>
+</button>
+</div>
+{% else %}
+<p>No hay libros disponibles para mostrar.</p>
+{% endif %}
+
+{% endblock %}
+

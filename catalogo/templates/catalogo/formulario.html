@@ -1,0 +1,12 @@
+{% extends "catalogo/base.html" %}
+
+{% block titulo %}{{ titulo }}{% endblock %}
+
+{% block contenido %}
+<h2 class="mb-4">{{ titulo }}</h2>
+<form method="post" class="bg-white p-4 rounded shadow-sm">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success">Guardar</button>
+</form>
+{% endblock %}
